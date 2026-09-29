@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 struct Producto
 {
@@ -22,6 +23,19 @@ Nodo *head = nullptr;
 
 int main()
 {
+    
+    return 0;
+}
+
+void InsertarInicio(int codigo, std::string nombre, double precio)
+{
+    struct nodo *nuevo_nodo = new nodo;
+    nuevo_nodo->producto.codigo = codigo;
+    nuevo_nodo->producto.nombre = nombre;
+    nuevo_nodo->producto.precio = precio;
+
+    nuevo_nodo->siguiente = Lista;
+    Lista = nuevo_nodo;
 
     return 0;
 }
