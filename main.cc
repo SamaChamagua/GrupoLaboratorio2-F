@@ -16,6 +16,7 @@ struct Nodo
 };
 
 void InsertarFinal(Producto nuevo_producto);
+void InsertarInicio(int codigo, std::string nombre, double precio);
 void Imprimir();
 
 Nodo *head = nullptr;
@@ -29,15 +30,45 @@ int main()
 
 void InsertarInicio(int codigo, std::string nombre, double precio)
 {
-    struct nodo *nuevo_nodo = new nodo;
-    nuevo_nodo->producto.codigo = codigo;
-    nuevo_nodo->producto.nombre = nombre;
-    nuevo_nodo->producto.precio = precio;
+    Nodo* nuevo_nodo = new Nodo;
+    nuevo_nodo->dato.codigo = codigo;
+    nuevo_nodo->dato.nombre = nombre;
+    nuevo_nodo->dato.precio = precio;
+    nuevo_nodo->anterior = nullptr;
 
-    nuevo_nodo->siguiente = Lista;
-    Lista = nuevo_nodo;
+    nuevo_nodo->siguiente = head;
+    head = nuevo_nodo;
+    if (head->siguiente != nullptr)
+    {
+        head->siguiente->anterior = head;
+    }
+    
+    if (head == nullptr)
+    {
+        std::cout << "Codigo: "<<actual->dato.codigo<<std::endl;
+        std::cout << "Nombre: "<<actual->dato.nombre<<std::endl;
+        std::cout << "Precio: "<<actual->dato.precio<<std::endl;
 
-    return 0;
+        actual = actual->siguiente;
+    };
+      
+}
+
+void InsertarFinal(Producto nuevo_producto)
+{
+    Nodo* nuevo = new Nodo();
+    nuevo->dato = nuevo_producto;
+    nuevo->siguiente = nullptr;
+
+    if (head == nullptr)
+    {
+        nuevo->anterior = nullptr;
+        head = nuevo;
+    }
+    else
+    {
+        std::cout << "Producto insertado al inicio: " << head->dato.nombre << std::endl;
+    }
 }
 
 void Imprimir()
