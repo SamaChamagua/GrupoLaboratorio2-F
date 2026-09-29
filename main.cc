@@ -24,13 +24,76 @@ Nodo *head = nullptr;
 
 int main()
 {
-    
+int opcion;
+    do
+    {
+        std::cout << "\n==============================\n";
+        std::cout << "      SISTEMA DE INVENTARIO   \n";
+        std::cout << "==============================\n";
+        std::cout << "1. Agregar producto al final\n";
+        std::cout << "2. Agregar producto al inicio\n";
+        std::cout << "3. Mostrar inventario\n";
+        std::cout << "4. Salir\n";
+        std::cout << "Seleccione una opcion: ";
+        std::cin >> opcion;
+
+        // Limpiar el buffer de entrada para evitar errores con std::string
+        std::cin.ignore();
+
+        switch (opcion)
+        {
+        case 1:
+        {
+            Producto p;
+            std::cout << "Ingrese codigo: ";
+            std::cin >> p.codigo;
+            std::cin.ignore();
+            std::cout << "Ingrese nombre: ";
+            std::getline(std::cin, p.nombre);
+            std::cout << "Ingrese precio: ";
+            std::cin >> p.precio;
+
+            InsertarFinal(p);
+            break;
+        }
+        case 2:
+        {
+            int codigo;
+            std::string nombre;
+            double precio;
+
+            std::cout << "Ingrese codigo: ";
+            std::cin >> codigo;
+            std::cin.ignore();
+            std::cout << "Ingrese nombre: ";
+            std::getline(std::cin, nombre);
+            std::cout << "Ingrese precio: ";
+            std::cin >> precio;
+
+            InsertarInicio(codigo, nombre, precio);
+            break;
+        }
+        case 3:
+            Imprimir();
+            break;
+
+        case 4:
+            std::cout << "Saliendo del programa...\n";
+            break;
+
+        default:
+            std::cout << "Opcion invalida. Intente de nuevo.\n";
+        }
+
+    } while (opcion != 4);
+
     return 0;
 }
 
 void InsertarInicio(int codigo, std::string nombre, double precio)
 {
     Nodo* nuevo_nodo = new Nodo;
+    Nodo *actual = head;
     nuevo_nodo->dato.codigo = codigo;
     nuevo_nodo->dato.nombre = nombre;
     nuevo_nodo->dato.precio = precio;
