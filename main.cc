@@ -45,7 +45,25 @@ void InsertarInicio(int codigo, std::string nombre, double precio)
     
     if (head == nullptr)
     {
-        std::cout << "La lista esta vacia." << std::endl;
+        std::cout << "Codigo: "<<actual->dato.codigo<<std::endl;
+        std::cout << "Nombre: "<<actual->dato.nombre<<std::endl;
+        std::cout << "Precio: "<<actual->dato.precio<<std::endl;
+
+        actual = actual->siguiente;
+    };
+      
+}
+
+void InsertarFinal(Producto nuevo_producto)
+{
+    Nodo* nuevo = new Nodo();
+    nuevo->dato = nuevo_producto;
+    nuevo->siguiente = nullptr;
+
+    if (head == nullptr)
+    {
+        nuevo->anterior = nullptr;
+        head = nuevo;
     }
     else
     {
