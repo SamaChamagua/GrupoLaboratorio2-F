@@ -14,9 +14,11 @@ struct Nodo
     Nodo* anterior;
 };
 
-Nodo* inicio = nullptr;
-
 void InsertarInicio(Producto nuevo_producto);
+void Imprimir();
+
+Nodo *head = nullptr;
+
 
 int main()
 {
@@ -28,14 +30,36 @@ void InsertarInicio (Producto nuevo_producto){
     Nodo* nuevo = new Nodo();
     nuevo->dato = nuevo_producto;
     nuevo->anterior = nullptr;
-    nuevo->siguiente = inicio;
+    nuevo->siguiente = head;
 
-    if (inicio != nullptr)
+    if (head != nullptr)
     {
-        inicio->anterior = nuevo;
+        head->anterior = nuevo;
     }
 
-    inicio = nuevo;
+    head = nuevo;
 
     std::cout << "Producto \"" << nuevo->dato.nombre << "\" agregado al inicio.\n";
+}
+
+void Imprimir()
+{
+    if (head == nullptr)
+    {
+        std::cout << "Lista Vacia. No hay productos para mostrar"<<std::endl;
+    }
+
+    Nodo *actual = head;
+
+    std::cout << "-------------INVENTARIO-----------"<<std::endl;
+    while (actual != nullptr)
+    {
+        std::cout << "Codigo: "<<actual->dato.codigo<<std::endl;
+        std::cout << "Nombre: "<<actual->dato.nombre<<std::endl;
+        std::cout << "Precio: "<<actual->dato.precio<<std::endl;
+
+        actual = actual->siguiente;
+    }
+    
+    
 }
