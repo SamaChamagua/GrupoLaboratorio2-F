@@ -24,6 +24,58 @@ Nodo *head = nullptr;
 
 int main()
 {
+    int opcion;
+    do
+    {
+        std::cout << "\n===== MENÚ DE INVENTARIO =====\n";
+        std::cout << "1. Insertar producto al inicio\n";
+        std::cout << "2. Insertar producto al final\n";
+        std::cout << "3. Imprimir inventario\n";
+        std::cout << "4. Salir\n";
+        std::cout << "Seleccione una opción: ";
+        std::cin >> opcion;
+
+        switch (opcion)
+        {
+        case 1:
+        {
+            int codigo;
+            std::string nombre;
+            double precio;
+
+            std::cout << "Ingrese código: ";
+            std::cin >> codigo;
+            std::cout << "Ingrese nombre: ";
+            std::cin >> nombre;
+            std::cout << "Ingrese precio: ";
+            std::cin >> precio;
+
+            InsertarInicio(codigo, nombre, precio);
+            break;
+        }
+        case 2:
+        {
+            Producto nuevo;
+            std::cout << "Ingrese código: ";
+            std::cin >> nuevo.codigo;
+            std::cout << "Ingrese nombre: ";
+            std::cin >> nuevo.nombre;
+            std::cout << "Ingrese precio: ";
+            std::cin >> nuevo.precio;
+
+            InsertarFinal(nuevo);
+            break;
+        }
+        case 3:
+            Imprimir();
+            break;
+        case 4:
+            std::cout << "Saliendo del programa...\n";
+            break;
+        default:
+            std::cout << "Opción inválida. Intente de nuevo.\n";
+        }
+    } while (opcion != 4);
     
     return 0;
 }
